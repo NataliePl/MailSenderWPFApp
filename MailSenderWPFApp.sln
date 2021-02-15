@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSenderApp", "MailSender
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E5F64722-425B-4BE8-8B81-DB3EB5AD9888}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{D7415DFE-5C21-4C51-9432-38259232A28F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWpf", "Tests\TestWpf\TestWpf.csproj", "{8ED79892-4F16-4E75-ABEE-C7D93A99CE65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +21,21 @@ Global
 		{FAB7E17E-F8F0-450E-963D-DF59B8DF1887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB7E17E-F8F0-450E-963D-DF59B8DF1887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB7E17E-F8F0-450E-963D-DF59B8DF1887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7415DFE-5C21-4C51-9432-38259232A28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7415DFE-5C21-4C51-9432-38259232A28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7415DFE-5C21-4C51-9432-38259232A28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7415DFE-5C21-4C51-9432-38259232A28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED79892-4F16-4E75-ABEE-C7D93A99CE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED79892-4F16-4E75-ABEE-C7D93A99CE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED79892-4F16-4E75-ABEE-C7D93A99CE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED79892-4F16-4E75-ABEE-C7D93A99CE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7415DFE-5C21-4C51-9432-38259232A28F} = {E5F64722-425B-4BE8-8B81-DB3EB5AD9888}
+		{8ED79892-4F16-4E75-ABEE-C7D93A99CE65} = {E5F64722-425B-4BE8-8B81-DB3EB5AD9888}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F7A6F06A-9432-4CDA-9B54-93B5537E6CCD}

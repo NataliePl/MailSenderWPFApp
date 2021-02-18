@@ -5,8 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+
+    Title="MailSenderTest" Height="500" Width="700">
+
+
+    <Grid  Width="auto" Height="auto" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="573*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="150*"/>
+        </Grid.RowDefinitions>
+
+        <GridSplitter Grid.Column="0"                              
+                              Width="1"
+                              Background="Gray" 
+                              HorizontalAlignment="Right"
+                              Grid.RowSpan="3"
+                              VerticalAlignment="Stretch" 
+                              />
+        <GridSplitter Grid.Row="1"                              
+                              Height="1"
+                              Background="Gray" 
+                              Grid.Column="1"
+                              VerticalAlignment="Bottom"
+                              HorizontalAlignment="Stretch"
+                              />
+
+        <GroupBox Height="auto" Width="auto" Header="От кого" Grid.Column="0" Grid.Row="0" Margin="2">
+            <Canvas >                    
+                <TextBlock Text="Логин" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="5"/>
+                <TextBox Name="LoginTB" Text="n.plaksickaya" TextWrapping="Wrap" Width="200" Canvas.Left="30" Canvas.Top="25"/>
+                <TextBlock Text="Пароль" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="50"/>
+                <PasswordBox Name="PasswordTB" Width="200" Canvas.Left="30" Canvas.Top="70"/>
+                <TextBlock Text="Имя" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="95"/>
+                <TextBox Name="FromNameTB" Text="n.plaksickaya" TextWrapping="Wrap" Width="200" Canvas.Left="30" Canvas.Top="115"/>
+            </Canvas>
+
+            </GroupBox>
+        <GroupBox Grid.Column="0" Grid.Row="1"  Header="Кому" Margin="2">
+            <Canvas >
+                <TextBlock Text="e-mail" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="5"/>
+                <TextBox Name="EmailToTB" Text="n.plaksickaya@yandex.ru" TextWrapping="Wrap" Width="200" Canvas.Left="30" Canvas.Top="25"/>
+                <TextBlock Text="Имя получателя" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="50"/>
+                <TextBox Name="ToName" Text="Наталия" Width="200" Canvas.Left="30" Canvas.Top="70"/>
+            </Canvas>
+        </GroupBox>
+
+        <GroupBox Grid.Column="0" Grid.Row="2"  Header="Данные почтового сервера" Margin="2">
+            <Canvas >
+                <TextBlock Text="Имя" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="5"/>
+                <TextBox Name="ServerTB" Text="smtp.gmail.com" TextWrapping="Wrap" Width="200" Canvas.Left="30" Canvas.Top="25"/>
+                <TextBlock Text="Порт" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="50"/>
+                <TextBox Name="PortNumberTB" Text="25" Width="200" Canvas.Left="30" Canvas.Top="70"/>
+            </Canvas>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Grid.RowSpan="2"  Header="Сообщение" Margin="2">
+            <Canvas >
+                <TextBlock Text="Тема письма" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="5"/>
+                <TextBox Name="MessageThemeTB" Text="Тема письма" TextWrapping="Wrap" Width="300" Canvas.Left="30" Canvas.Top="25"/>
+                <TextBlock Text="Текст сообщения" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="55"/>
+                <TextBox Name="MessageTextTB" Text="Введите текст сообщения" Height="143" Width="300" Canvas.Left="30" Canvas.Top="75" TextWrapping ="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
+            </Canvas>
+        </GroupBox>
+
+        <Button Grid.Row="2" Grid.Column="1" Name="SendBTN" Content="Отправить" VerticalAlignment="Center" Margin="20" Click="Button_Click" />
+        
+
 
     </Grid>
 </Window>

@@ -10,19 +10,24 @@ namespace TestWpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        string fromEMail;
+        MailAddress from;
+        MailAddress to;
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var from = new MailAddress("n.plaksickaya@gmail.com", "From_Наталия");
-            var to = new MailAddress("79214126446@yandex.ru", "To_Наталия");
+            fromEMail = LoginTB.Text + "@gmail.com";
+            from = new MailAddress("n.plaksickaya@gmail.com", FromNameTB.Text);
+            to = new MailAddress(EmailToTB.Text, ToName.Text);
 
             var message = new MailMessage(from, to);
-            message.Subject = "Тестовое письмо";
-            message.Body = "Текст тестового письма";
+            message.Subject = MessageThemeTB.Text;
+            message.Body = MessageTextTB.Text;
 
             var client = new SmtpClient("smtp.gmail.com", 25);
             client.EnableSsl = true;
@@ -35,7 +40,7 @@ namespace TestWpf
             try
             {
                 client.Send(message);
-                MessageBox.Show("Почта успешно отправлена");
+                MessageBox.Show("Письмо успешно отправлено");
             }
             catch (SmtpException)
             {

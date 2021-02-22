@@ -34,7 +34,7 @@
             <TabItem Header="Списки">
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top" HorizontalAlignment="Stretch">                        
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" Background="LightBlue" HorizontalAlignment="Stretch">
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" Background="LightGray" HorizontalAlignment="Stretch">
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Text="Сервера" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
@@ -48,7 +48,7 @@
                             </StackPanel>                  
                            
                         </ToolBar>
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightBlue">
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightGray">
                             <StackPanel Width="Auto" MinWidth="200">
                                 <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
@@ -70,7 +70,7 @@
                             </StackPanel>                            
                         </ToolBar>
 
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightBlue">
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightGray">
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Margin="0,5,0,0" VerticalAlignment="Center" Text="Перейти в планировщик"/>
                                 <Button BorderThickness="1" Margin="0,2,0,0" Height="30" Background="Transparent">
@@ -82,7 +82,7 @@
                             </StackPanel>
                         </ToolBar>
 
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightBlue">
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Margin="0,5,0,0" Text="Получатели" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Center">
@@ -100,7 +100,7 @@
                                   IsReadOnly="True"
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="DarkGray"
-                                  AlternatingRowBackground="LightBlue"
+                                  AlternatingRowBackground="LightGray"
                                   ItemsSource="{x:Static data:TestData.Recipients}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ID" MinWidth="50" MaxWidth="90"/>
@@ -239,7 +239,30 @@
                 </Grid>
                 
             </TabItem>
-            <TabItem Header="Письма"></TabItem>
+            <TabItem Header="Письма">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Письма">
+                        <ListBox MinWidth="130" ItemsSource="{x:Static data:TestData.Messages}"
+                                 DisplayMemberPath="Title"
+                                 Name="MessagesList"/>
+                    </GroupBox>
+                    <GroupBox MinWidth="150" Grid.Column="1">
+                        <DockPanel DataContext="{Binding SelectedItem, ElementName=MessagesList}">
+                            <GroupBox DockPanel.Dock ="Top" Header="Заголовок">
+                                <TextBox Text="{Binding Title}"/>
+                            </GroupBox>
+                            <GroupBox Header="Текст письма">
+                                <TextBox AcceptsReturn="True" AcceptsTab="True" Text="{Binding Text}"></TextBox>
+                            </GroupBox>
+                            
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Статистика"></TabItem>                
         </TabControl>
         

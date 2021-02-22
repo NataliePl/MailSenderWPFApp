@@ -4,76 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSenderApp"
+        xmlns:data="clr-namespase:MailSenderApp.Data"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="500">
-    <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Файл">
-                    <MenuItem Header="Выход" Click="MenuItem_Exit_Click"/>
-                </MenuItem>
-                <MenuItem Header="Справка">
-                    <MenuItem Header="Инструкция"/>
-                </MenuItem>
-            </Menu>
-            <Grid Margin="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="600" Width="800">
+   
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Click="MenuItem_Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="Помощь"/>
+                <Separator/>
+                <MenuItem Header="О программе"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <ResizeGrip/>
+            </StatusBarItem>
+            <StatusBarItem Content="Подсказка"/>
 
-                <GridSplitter Grid.Column="0"                              
-                              Width="1"
-                              Background="Gray" 
-                              HorizontalAlignment="Right"
-                              Grid.RowSpan="3"
-                              VerticalAlignment="Stretch" 
-                              />
-                <GridSplitter Grid.Row="0"                              
-                              Height="1"
-                              Background="Gray" 
-                              Grid.ColumnSpan="1"
-                              VerticalAlignment="Bottom"
-                              HorizontalAlignment="Stretch"
-                              />
-                <GridSplitter Grid.Row="1"                              
-                              Height="1"
-                              Background="Gray" 
-                              Grid.ColumnSpan="2"
-                              VerticalAlignment="Bottom"
-                              HorizontalAlignment="Stretch"
-                              />
-                <GroupBox Grid.Row="0"
-                          Grid.Column="0"
-                          Header="Данные сервера"
-                          Margin="5, 0, 5, 5">
-                    <Canvas>
-                        <ComboBox x:Name="ServerComboBox" Width="210"
-                                  VerticalAlignment="Center"
-                                  Margin="10"
-                                  Canvas.Top="0" DataContextChanged="ServerComboBox_DataContextChanged"
-                                  ItemsSource="{Binding portsOfMailServer}"
-                                  DisplayMemberPath="Key">
-                                                      
-                        </ComboBox>
-                        <TextBox
-                            Name="PortNumberTB"
-                            Canvas.Bottom="0"
-                            VerticalAlignment="Center"
-                            Margin="10"
-                            Width="210">
-                            
-                        </TextBox>
-                    </Canvas>
-                </GroupBox>
-            </Grid>
 
-        </DockPanel>
-
-    </Grid>
+        </StatusBar>
+            
+        <TabControl>
+            <TabItem Header="Списки"></TabItem>
+            <TabItem Header="Планировщик"></TabItem>
+            <TabItem Header="Письма"></TabItem>
+            <TabItem Header="Статистика"></TabItem>
+                
+        </TabControl>
+        
+    </DockPanel>
 </Window>

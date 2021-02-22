@@ -1,6 +1,8 @@
-﻿using MailSenderApp.Models;
+﻿using MailSender.lib.Service;
+using MailSenderApp.Models;
 using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 
@@ -14,7 +16,7 @@ namespace MailSenderApp.Data
                 Name = $"Сервер-{i}",
                 Address = $"smtp.server{i}.com",
                 Login = $"Login-{i}",
-                Password = $"Password-{i}",
+                Password = TextEncoder.Encode($"Password-{i}",7),
                 UseSSL = i % 2 == 0,
             }).ToList();
 

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSenderApp"
         xmlns:data="clr-namespase:MailSenderApp.Data"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
    
@@ -31,35 +32,64 @@
         <TabControl>
             <TabItem Header="Списки">
                 <DockPanel>
-                    <ToolBarTray DockPanel.Dock="Top">
-                        <ToolBar Header="Сервера">
-                            <ComboBox Margin="26,0,0,0" MinWidth="120" MaxWidth="200" SelectedIndex="0">
-                                <ComboBoxItem>smtp.yandex.ru:25</ComboBoxItem>
-                                <ComboBoxItem>smtp.mail.ru:25</ComboBoxItem>
-                                <ComboBoxItem>smtp.gmail.com:25</ComboBoxItem>
-                            </ComboBox>
-                            <Button>Добавить</Button>
-                            <Button>Редактировать</Button>
-                            <Button>Удалить</Button>
+                    <ToolBarTray DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+                        
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" >
+                            <StackPanel Width="Auto" MinWidth="140">
+                                <TextBlock Text="Сервера" HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
+                                    <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
+                                    <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
+                                </StackPanel>
+                                <ComboBox Width="130"  SelectedIndex="0">
+                                        <ComboBoxItem>smtp.yandex.ru:25</ComboBoxItem>
+                                        <ComboBoxItem>smtp.mail.ru:25</ComboBoxItem>
+                                        <ComboBoxItem>smtp.gmail.com:25</ComboBoxItem>
+                                    </ComboBox>                              
+                                
+                            </StackPanel>                  
+                           
                         </ToolBar>
-                        <ToolBar Header="Отправители" Band="1" BandIndex="0">
-                            <ComboBox MinWidth="120" MaxWidth="200" SelectedIndex="0">
-                                <ComboBoxItem>petrov.yandex.ru</ComboBoxItem>
-                                <ComboBoxItem>sidorov.mail.ru</ComboBoxItem>
-                                <ComboBoxItem>leshiy.gmail.com</ComboBoxItem>
-                                <Button>Добавить</Button>
-                                <Button>Редактировать</Button>
-                                <Button>Удалить</Button>
-                            </ComboBox>
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" BorderThickness="2" >
+                            <StackPanel Width="Auto" MinWidth="140">
+                                <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent" BorderThickness="1"></Button>
+                                    <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
+                                    <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
+                                </StackPanel>
+                                <ComboBox Width="130" SelectedIndex="0">
+                                    <ComboBoxItem>petrov.yandex.ru</ComboBoxItem>
+                                    <ComboBoxItem>sidorov.mail.ru</ComboBoxItem>
+                                    <ComboBoxItem>leshiy.gmail.com</ComboBoxItem>                                    
+                                </ComboBox>
+                                
+                                
+                            </StackPanel>
                         </ToolBar>
-                        <ToolBar>
-                            <TextBlock  VerticalAlignment="Center" Text="Перейти в планировщик"/>
-                            <Button>Перейти</Button>
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3">
+                            <StackPanel Width="Auto" MinWidth="140">
+                                <TextBlock Margin="0,5,0,0" VerticalAlignment="Center" Text="Перейти в планировщик"/>
+                                <Button BorderThickness="1" Margin="0,2,0,0" Height="30" Background="Transparent">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:ImageAwesome Icon="Regular_PlusSquare" Height="25"/>
+                                        <TextBlock Margin="5,0" Text="Добавить" VerticalAlignment="Center"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                
+                                </StackPanel>
                         </ToolBar>
-                        <ToolBar Band="1" Header="Получатели">
-                            <Button Content="Создать"/>
-                            <Button Content="Редактировать"/>
-                            <Button Content="Удалить"/>
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2">
+                            <StackPanel Width="Auto" MinWidth="140">
+                                <TextBlock Margin="0,5,0,0" Text="Получатели" HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Center">
+                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
+                                    <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
+                                    <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
+                                </StackPanel>
+                                
+                            </StackPanel>
                         </ToolBar>
                     </ToolBarTray>
                     <GroupBox Header="Список получателей" Margin="3">

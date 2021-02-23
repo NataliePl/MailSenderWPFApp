@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:MailSenderApp"
         xmlns:data="clr-namespace:MailSenderApp.Data"
         xmlns:models="clr-namespace:MailSenderApp.Models"
-        xmlns:fa="http://schemas.fontawesome.com/icons/"        
+        xmlns:fa="http://schemas.fontawesome.com/icons/" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="Рассыльщик писем" Height="600" Width="800">
    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -38,7 +39,7 @@
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Text="Сервера" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
+                                    <Button ToolTip="Добавить" FontSize="25" Click="OnAddServerButtonClick" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
                                     <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
                                     <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                 </StackPanel>
@@ -263,7 +264,28 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Статистика"></TabItem>                
+            <TabItem Header="Статистика">
+                <Border Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправлено писем:"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="0"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Всего отправителей:"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="0"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Всего получателей:"/>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="0"/>
+                    </Grid>
+                </Border>
+
+            </TabItem>                
         </TabControl>
         
     </DockPanel>

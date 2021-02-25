@@ -63,5 +63,10 @@ namespace MailSenderApp
         {
 
         }
+
+        private void LoadDataBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

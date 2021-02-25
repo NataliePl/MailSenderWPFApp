@@ -26,7 +26,7 @@
             <Button ToolTip="Удалить" fa:Awesome.Content="Solid_Trash" ></Button>
         </StackPanel>
         <ComboBox Margin="15,2" SelectedIndex="0" 
-            ItemsSource="{x:Static data:TestData.Servers}">
+            >
         </ComboBox>
     </StackPanel>
 

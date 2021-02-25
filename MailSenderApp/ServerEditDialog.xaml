@@ -10,7 +10,7 @@
  Width="330" Height="300">
     <DockPanel Margin="5">
         <GroupBox DockPanel.Dock="Left" Header="Список серверов" MinWidth="130" MaxWidth="160">
-            <ListBox  ItemsSource="{x:Static data:TestData.Servers}"></ListBox>
+            <ListBox  ></ListBox>
         </GroupBox>
         <GroupBox Header="Редактировать данные">
             <StackPanel>

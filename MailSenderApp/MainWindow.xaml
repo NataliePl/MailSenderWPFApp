@@ -10,16 +10,18 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         xmlns:contr="clr-namespace:MailSenderApp.Controls"
-        xmlns:vm="clr-namespace:MailSenderApp.ViewModels"
-        Title="{Binding Title}" Height="600" Width="800">
-    <Window.DataContext>
+        xmlns:vm="clr-namespace:MailSenderApp.ViewModels"        
+        Title="{Binding Title}" 
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        Height="600" Width="800">
+    <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Click="MenuItem_Exit_Click"/>
+                <MenuItem Header="Выход" Command="{StaticResource CloseAppCommand}"/>
             </MenuItem>
             <MenuItem Header="Справка">
                 <MenuItem Header="Помощь"/>
@@ -30,6 +32,9 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem DockPanel.Dock="Right">
                 <ResizeGrip/>
+            </StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Right">
+                <Button Name="LoadDataBtn"  Content="Загрузить данные" Command=""/>
             </StatusBarItem>
             <StatusBarItem Content="{Binding Status}"/>
 
@@ -49,7 +54,7 @@
                                     <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                 </StackPanel>
                                 <ComboBox Width="130" SelectedIndex="0" 
-                                          ItemsSource="{x:Static data:TestData.Servers}">
+                                          ItemsSource="{Binding Servers}">
                                 </ComboBox> 
                             </StackPanel>                  
                            

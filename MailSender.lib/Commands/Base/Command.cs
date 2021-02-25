@@ -15,7 +15,7 @@ namespace MailSender.lib.Commands.Base
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public bool CanExecute(object? parameter) => true;
+        public virtual bool CanExecute(object? parameter) => true;
 
         public abstract void Execute(object? parameter); 
     }

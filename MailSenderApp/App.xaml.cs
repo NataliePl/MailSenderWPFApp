@@ -1,4 +1,6 @@
 ﻿using MailSenderApp.Infrastructure;
+using MailSender.lib.Interfaces;
+using MailSenderApp.Infrastructure.Services;
 using MailSenderApp.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MailSender.lib.Service;
 
 namespace MailSenderApp
 {
@@ -34,6 +37,9 @@ namespace MailSenderApp
         {
             services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<ServersRepository>();
+            services.AddSingleton<StatisticViewModel>();
+            services.AddSingleton<IMailService, DebugMailService>();
+            services.AddSingleton<IStatistic, InMemoryStatisticService>();
         }
     }
 }

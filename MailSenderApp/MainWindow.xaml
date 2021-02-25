@@ -34,7 +34,7 @@
                 <ResizeGrip/>
             </StatusBarItem>
             <StatusBarItem DockPanel.Dock="Right">
-                <Button Name="LoadDataBtn"  Content="Загрузить данные" Command=""/>
+                <Button Name="LoadDataBtn"  Content="Загрузить данные" Command="{Binding LoadServersCommand}"/>
             </StatusBarItem>
             <StatusBarItem Content="{Binding Status}"/>
 
@@ -147,7 +147,7 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <Button Content="Запланировать"/>
-                                <Button Content="Отправить"/>
+                                <Button Content="Отправить" Command="{Binding SendEmailCommand}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
@@ -278,26 +278,9 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Статистика">
-                <Border Margin="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправлено писем:"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Всего отправителей:"/>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Всего получателей:"/>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Text="0"/>
-                    </Grid>
-                </Border>
+            <TabItem Header="Статистика"
+                     xmlns:v="clr-namespace:MailSenderApp.Views">
+                <v:StatisticView/>
 
             </TabItem>                
         </TabControl>

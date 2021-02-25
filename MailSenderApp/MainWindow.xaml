@@ -10,7 +10,11 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         xmlns:contr="clr-namespace:MailSenderApp.Controls"
-        Title="Рассыльщик писем" Height="600" Width="800">
+        xmlns:vm="clr-namespace:MailSenderApp.ViewModels"
+        Title="{Binding Title}" Height="600" Width="800">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -27,7 +31,7 @@
             <StatusBarItem DockPanel.Dock="Right">
                 <ResizeGrip/>
             </StatusBarItem>
-            <StatusBarItem Content="Подсказка"/>
+            <StatusBarItem Content="{Binding Status}"/>
 
 
         </StatusBar>

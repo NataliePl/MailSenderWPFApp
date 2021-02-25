@@ -13,12 +13,7 @@ namespace TestWpf.ViewModels
         public string Title
         {
             get => _Title;
-            set
-            {
-                if (Equals(_Title, value)) return;
-                _Title = value;
-                OnPropertyChanged();
-            }
+            set => Set(ref _Title, value);
         }
     }
 }

@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestWpf"
+        xmlns:vm="clr-namespace:TestWpf.ViewModels"
         mc:Ignorable="d"
+        
 
-    Title="MailSenderTest" Height="500" Width="700">
+    Title="{Binding Title}" Height="500" Width="700">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
 
 
     <Grid  Width="auto" Height="auto" >

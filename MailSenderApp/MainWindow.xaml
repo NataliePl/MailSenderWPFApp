@@ -9,6 +9,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/" 
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        xmlns:contr="clr-namespace:MailSenderApp.Controls"
         Title="Рассыльщик писем" Height="600" Width="800">
    
     <DockPanel>
@@ -93,6 +94,10 @@
                                 </StackPanel>
                                 
                             </StackPanel>
+                        </ToolBar>
+                        <ToolBar>
+                            <contr:ItemsPanel Title="{Binding Text, ElementName=Tecn}"/>
+                            <TextBox Name="Tecn" Text="12300"/>
                         </ToolBar>
                     </ToolBarTray>
                     

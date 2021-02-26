@@ -59,14 +59,19 @@ namespace MailSenderApp
             }
         }
 
-        private void OnAddServerButtonClick(object sender, RoutedEventArgs e)
-        {
+        //private void OnAddServerButtonClick(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void LoadDataBtn_Click(object sender, RoutedEventArgs e)
-        {
+        //private void LoadDataBtn_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
+
+        //private void LoadDataBtn_Click_1(object sender, RoutedEventArgs e)
+        //{
+
+        //}
     }
 }

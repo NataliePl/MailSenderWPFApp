@@ -16,10 +16,12 @@ namespace MailSenderApp.ViewModels
     internal class MainWindowViewModel: ViewModel
     {
         private string _Title = "Почтовый !";
+        private string _ToolServersTitle = "Сервера";
 
         private readonly ServersRepository _Servers;
         private readonly IMailService _MailService;
 
+        public string ToolServersTitle { get => _ToolServersTitle; set => Set(ref _ToolServersTitle, value); }
         public string Title { get => _Title; set => Set(ref _Title, value); }
 
         private string _Status = "Готов к работе!!!";

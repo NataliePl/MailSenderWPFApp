@@ -43,12 +43,12 @@ namespace MailSenderApp.Controls
         public static readonly DependencyProperty ItemsListProperty =
            DependencyProperty.Register(
            nameof(ItemsList),
-           typeof(IEnumerable<>),
+           typeof(IEnumerable),
            typeof(ItemsPanel),
-           new PropertyMetadata(default(IEnumerable<Object>)));
+           new PropertyMetadata(null));
 
-        public IEnumerable<Object> ItemsList {
-            get => (IEnumerable<Object>)GetValue(ItemsListProperty);
+        public IEnumerable ItemsList {
+            get => (IEnumerable)GetValue(ItemsListProperty);
             //get => new ServersRepository().GetAll();
             set => SetValue(ItemsListProperty, value);
         }

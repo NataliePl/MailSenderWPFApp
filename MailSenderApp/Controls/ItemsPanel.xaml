@@ -11,7 +11,8 @@
              mc:Ignorable="d" Height="90" Width="150"
              >
 
-    <StackPanel Width="Auto" MinWidth="140">
+    <StackPanel Width="Auto" MinWidth="140"
+                 DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ItemsPanel}}}">
         <StackPanel.Resources >
             <Style TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>

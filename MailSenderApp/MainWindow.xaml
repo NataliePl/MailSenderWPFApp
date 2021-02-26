@@ -47,7 +47,7 @@
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Text="Сервера" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                                    <Button ToolTip="Добавить" FontSize="25" Click="OnAddServerButtonClick" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
+                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
                                     <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
                                     <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                 </StackPanel>
@@ -103,9 +103,9 @@
                             </StackPanel>
                         </ToolBar>
                         <ToolBar>
-                            <contr:ItemsPanel Title="{Binding Text, ElementName=Tecn}"
-                                              ItemsList="{Binding Servers}"/>
-                            <TextBox Name="Tecn" Text="12300"/>
+                            <contr:ItemsPanel Title="{Binding ToolServersTitle}"
+                                              ItemsList="{Binding Servers, Mode=OneWay}"/>
+                            
                         </ToolBar>
                     </ToolBarTray>
                     

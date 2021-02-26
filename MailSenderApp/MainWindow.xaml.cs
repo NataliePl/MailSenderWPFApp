@@ -59,6 +59,8 @@ namespace MailSenderApp
             }
         }
 
+        
+
         //private void OnAddServerButtonClick(object sender, RoutedEventArgs e)
         //{
 

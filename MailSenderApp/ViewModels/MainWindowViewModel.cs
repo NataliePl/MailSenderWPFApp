@@ -65,5 +65,22 @@ namespace MailSenderApp.ViewModels
             foreach (var server in _Servers.GetAll())
                 Servers.Add(server);
         }
+
+        //private ICommand _AddServerCommand;
+
+        //public ICommand AddServerCommand => _AddServerCommand
+        //    ??= new LambdaCommand(AddServerCommandExecuted, true);
+
+        //private bool AddServerCommandExecuted(object p)
+        //{
+        //    AddServer(p);
+        //}
+        //private void AddServer()
+        //{
+        //    foreach (var server in _Servers.GetAll())
+        //        Servers.Add(server);
+        //}
+
+
     }
 }

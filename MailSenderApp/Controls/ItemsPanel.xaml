@@ -22,7 +22,7 @@
         </StackPanel.Resources>
         <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" HorizontalAlignment="Center"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-            <Button ToolTip="Добавить" fa:Awesome.Content="Regular_PlusSquare" Command="{Binding AddServerCommand}" ></Button>
+            <Button ToolTip="Добавить" fa:Awesome.Content="Regular_PlusSquare" Command="{Binding AddCommand }" CommandParameter="add"></Button>
             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" ></Button>
             <Button ToolTip="Удалить" fa:Awesome.Content="Solid_Trash" ></Button>
         </StackPanel>

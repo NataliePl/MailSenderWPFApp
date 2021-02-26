@@ -17,7 +17,7 @@
     <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>-->
-   
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -38,12 +38,12 @@
             </StatusBarItem>
             <StatusBarItem Content="{Binding Status}"/>
         </StatusBar>
-            
+
         <TabControl>
             <TabItem Header="Списки">
                 <DockPanel>
-                    <ToolBarTray DockPanel.Dock="Top" HorizontalAlignment="Stretch">                        
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" Background="LightGray" HorizontalAlignment="Stretch">
+                    <ToolBarTray DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+                        <!--<ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" Background="LightGray" HorizontalAlignment="Stretch">
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Text="Сервера" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
@@ -56,8 +56,15 @@
                                 </ComboBox> 
                             </StackPanel>                  
                            
-                        </ToolBar>
+                        </ToolBar>-->
+
                         <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightGray">
+                            <contr:ItemsPanel Title="{Binding ToolServersTitle}"
+                                              ItemsList="{Binding Servers, Mode=OneWay}"
+                                              />
+                        </ToolBar>
+
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
                             <StackPanel Width="Auto" MinWidth="200">
                                 <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
@@ -66,17 +73,17 @@
                                     <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                 </StackPanel>
                                 <ComboBox MinWidth="190" SelectedIndex="0"
-                                          ItemsSource="{x:Static data:TestData.Senders}">  
+                                          ItemsSource="{x:Static data:TestData.Senders}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate DataType="models:Sender">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Name}"/>                                                
+                                                <TextBlock Text="{Binding Name}"/>
                                                 <TextBlock Text="{Binding Address}" Margin="3,0" VerticalAlignment="Center" FontSize="10" Opacity="0.7"/>
-                                            </StackPanel>                                            
+                                            </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                            </StackPanel>                            
+                            </StackPanel>
                         </ToolBar>
 
                         <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightGray">
@@ -87,11 +94,11 @@
                                         <fa:ImageAwesome Icon="Regular_PlusSquare" Height="25"/>
                                         <TextBlock Margin="5,0" Text="Добавить" VerticalAlignment="Center"></TextBlock>
                                     </StackPanel>
-                                </Button>                                
+                                </Button>
                             </StackPanel>
                         </ToolBar>
 
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="4" Background="LightGray">
                             <StackPanel Width="Auto" MinWidth="140">
                                 <TextBlock Margin="0,5,0,0" Text="Получатели" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Center">
@@ -99,16 +106,12 @@
                                     <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
                                     <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                 </StackPanel>
-                                
+
                             </StackPanel>
                         </ToolBar>
-                        <ToolBar>
-                            <contr:ItemsPanel Title="{Binding ToolServersTitle}"
-                                              ItemsList="{Binding Servers, Mode=OneWay}"/>
-                            
-                        </ToolBar>
+
                     </ToolBarTray>
-                    
+
                     <GroupBox Header="Список получателей" Margin="3">
                         <DataGrid AutoGenerateColumns="False"
                                   IsReadOnly="True"
@@ -123,15 +126,15 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
-                </DockPanel>                    
-            </TabItem>                
+                </DockPanel>
+            </TabItem>
             <TabItem Header="Планировщик">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="200"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <GroupBox Grid.Column="0" Header="Управление">
                         <StackPanel>
                             <TextBlock Text="Дата" HorizontalAlignment="Center" Margin="0,5,0,0"/>
@@ -187,9 +190,9 @@
 
                                         <TextBlock Grid.Column="0" Grid.Row="2" Text="Отправитель:"/>
                                         <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
-                                    </Grid>                                    
+                                    </Grid>
                                 </GroupBox>
-                                
+
                             </ListBoxItem>
                             <ListBoxItem>
                                 <GroupBox Header="Задания от 16.02.21 13:57">
@@ -251,7 +254,7 @@
                     </GroupBox>
                     <GridSplitter Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="4" Background="Transparent"/>
                 </Grid>
-                
+
             </TabItem>
             <TabItem Header="Письма">
                 <Grid>
@@ -272,7 +275,7 @@
                             <GroupBox Header="Текст письма">
                                 <TextBox AcceptsReturn="True" AcceptsTab="True" Text="{Binding Text}"></TextBox>
                             </GroupBox>
-                            
+
                         </DockPanel>
                     </GroupBox>
                 </Grid>
@@ -281,8 +284,8 @@
                      xmlns:v="clr-namespace:MailSenderApp.Views">
                 <v:StatisticView/>
 
-            </TabItem>                
+            </TabItem>
         </TabControl>
-        
+
     </DockPanel>
 </Window>

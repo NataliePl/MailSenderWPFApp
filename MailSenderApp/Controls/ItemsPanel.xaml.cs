@@ -37,6 +37,7 @@ namespace MailSenderApp.Controls
         public ItemsPanel()
         {
             InitializeComponent();
+            
         }
 
 
@@ -49,10 +50,23 @@ namespace MailSenderApp.Controls
 
         public IEnumerable ItemsList {
             get => (IEnumerable)GetValue(ItemsListProperty);
-            //get => new ServersRepository().GetAll();
+            
             set => SetValue(ItemsListProperty, value);
         }
 
+        public ICommand AddCommand { get; set; }
 
+        public static readonly DependencyProperty AddCommandProperty =
+           DependencyProperty.Register(
+           nameof(AddCommand),
+           typeof(ICommand),
+           typeof(ItemsPanel),
+           new PropertyMetadata(null));
+
+
+        //public ItemsPanel(CommandBinding addServerCommand)
+        //{
+        //    AddServerCommand = addServerCommand;
+        //}
     }
 }

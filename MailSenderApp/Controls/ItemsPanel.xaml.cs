@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MailSenderApp.Infrastructure;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,5 +38,21 @@ namespace MailSenderApp.Controls
         {
             InitializeComponent();
         }
+
+
+        public static readonly DependencyProperty ItemsListProperty =
+           DependencyProperty.Register(
+           nameof(ItemsList),
+           typeof(IEnumerable<>),
+           typeof(ItemsPanel),
+           new PropertyMetadata(default(IEnumerable<Object>)));
+
+        public IEnumerable<Object> ItemsList {
+            get => (IEnumerable<Object>)GetValue(ItemsListProperty);
+            //get => new ServersRepository().GetAll();
+            set => SetValue(ItemsListProperty, value);
+        }
+
+
     }
 }

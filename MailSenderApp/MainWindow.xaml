@@ -37,8 +37,6 @@
                 <Button Name="LoadDataBtn"  Content="Загрузить данные" Command="{Binding LoadServersCommand}"/>
             </StatusBarItem>
             <StatusBarItem Content="{Binding Status}"/>
-
-
         </StatusBar>
             
         <TabControl>
@@ -105,7 +103,8 @@
                             </StackPanel>
                         </ToolBar>
                         <ToolBar>
-                            <contr:ItemsPanel Title="{Binding Text, ElementName=Tecn}"/>
+                            <contr:ItemsPanel Title="{Binding Text, ElementName=Tecn}"
+                                              ItemsList="{Binding Servers}"/>
                             <TextBox Name="Tecn" Text="12300"/>
                         </ToolBar>
                     </ToolBarTray>

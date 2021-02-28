@@ -34,15 +34,15 @@ namespace MailSenderApp
             portsOfMailServer.Add("smtp.mail.ru", 25);
         }
 
-        private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        //private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Close();
+        //}
 
-        private void ServerComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
+        //private void ServerComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {

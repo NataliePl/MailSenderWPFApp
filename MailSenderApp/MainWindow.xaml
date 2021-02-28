@@ -61,6 +61,7 @@
                         <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightGray">
                             <contr:ItemsPanel Title="{Binding ToolServersTitle}"
                                               ItemsList="{Binding Servers, Mode=OneWay}"
+                                              AddCommand="{Binding }"
                                               />
                         </ToolBar>
 

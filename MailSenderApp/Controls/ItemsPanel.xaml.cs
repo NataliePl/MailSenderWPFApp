@@ -63,6 +63,7 @@ namespace MailSenderApp.Controls
            typeof(ItemsPanel),
            new PropertyMetadata(null));
 
+        
 
         //public ItemsPanel(CommandBinding addServerCommand)
         //{

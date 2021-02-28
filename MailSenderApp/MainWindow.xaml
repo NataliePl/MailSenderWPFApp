@@ -61,7 +61,7 @@
                         <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightGray">
                             <contr:ItemsPanel Title="{Binding ToolServersTitle}"
                                               ItemsList="{Binding Servers, Mode=OneWay}"
-                                              AddCommand="{Binding }"
+                                              AddCommand="{Binding OpenAddServerWindowCommand}"
                                               />
                         </ToolBar>
 
@@ -69,7 +69,7 @@
                             <StackPanel Width="Auto" MinWidth="200">
                                 <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent" BorderThickness="1"></Button>
+                                    <Button Command="{Binding OpenAddServerWindowCommand}" ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent" BorderThickness="1"></Button>
                                     <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
                                     <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                 </StackPanel>

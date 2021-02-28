@@ -51,7 +51,6 @@ namespace MailSenderApp.ViewModels
         public string Status { get => _Status; set => Set(ref _Status, value); }
         #endregion
 
-
         #region Загрузка серверов
         public ObservableCollection<Server> Servers { get; } = new();
 
@@ -120,14 +119,16 @@ namespace MailSenderApp.ViewModels
         }
         #endregion
 
-        private ICommand _OpenAddServerWindow;
+        private ICommand _OpenAddServerWindowCommand;
 
-        public ICommand OpenAddServerWindow => _OpenAddServerWindow
-            ??= new LambdaCommand(OpenAddServerWindowExecuted, CanLoadRecipientsCommandExecute);
+        public ICommand OpenAddServerWindowCommand => _OpenAddServerWindowCommand
+            ??= new LambdaCommand(OpenAddServerWindowCommandExecuted, CanLoadRecipientsCommandExecute);
 
-        private void OpenAddServerWindowExecuted(object p)
+        private void OpenAddServerWindowCommandExecuted(object p)
         {
-            
+            var serverEditDialogViewModel = new ServerEditDialogViewModel();
+            MessageBox.Show("gfhgfd");
+
             //var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
             //var serverEditDialogViewModel = new ServerEditDialogViewModel();

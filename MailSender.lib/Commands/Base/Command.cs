@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MailSender.lib.Commands.Base
+namespace MailSender.lib.Commands
 {
     public abstract class Command : ICommand
     {

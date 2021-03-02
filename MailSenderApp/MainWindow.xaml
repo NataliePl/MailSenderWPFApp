@@ -65,51 +65,58 @@
                                               />
                         </ToolBar>
 
+                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightGray">
+                            <contr:ItemsPanel Title="{Binding ToolSendersTitle}"
+                                              ItemsList="{Binding Senders, Mode=OneWay}"
+                                              AddCommand="{Binding OpenAddSendersWindowCommand}"
+                                              />
+                        </ToolBar>
+
                         <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
-                            <StackPanel Width="Auto" MinWidth="200">
-                                <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                                    <Button Command="{Binding OpenAddServerWindowCommand}" ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent" BorderThickness="1"></Button>
-                                    <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
-                                    <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
-                                </StackPanel>
-                                <ComboBox MinWidth="190" SelectedIndex="0"
-                                          ItemsSource="{x:Static data:TestData.Senders}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate DataType="models:Sender">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Name}"/>
-                                                <TextBlock Text="{Binding Address}" Margin="3,0" VerticalAlignment="Center" FontSize="10" Opacity="0.7"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </StackPanel>
-                        </ToolBar>
-
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightGray">
-                            <StackPanel Width="Auto" MinWidth="140">
-                                <TextBlock Margin="0,5,0,0" VerticalAlignment="Center" Text="Перейти в планировщик"/>
-                                <Button BorderThickness="1" Margin="0,2,0,0" Height="30" Background="Transparent">
-                                    <StackPanel Orientation="Horizontal">
-                                        <fa:ImageAwesome Icon="Regular_PlusSquare" Height="25"/>
-                                        <TextBlock Margin="5,0" Text="Добавить" VerticalAlignment="Center"></TextBlock>
+                                <StackPanel Width="Auto" MinWidth="200">
+                                    <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                        <Button Command="{Binding OpenAddServerWindowCommand}" ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent" BorderThickness="1"></Button>
+                                        <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
+                                        <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
                                     </StackPanel>
-                                </Button>
-                            </StackPanel>
-                        </ToolBar>
-
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="4" Background="LightGray">
-                            <StackPanel Width="Auto" MinWidth="140">
-                                <TextBlock Margin="0,5,0,0" Text="Получатели" HorizontalAlignment="Center"/>
-                                <StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Center">
-                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
-                                    <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
-                                    <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
+                                    <ComboBox MinWidth="190" SelectedIndex="0"
+                                          ItemsSource="{x:Static data:TestData.Senders}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate DataType="models:Sender">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"/>
+                                                    <TextBlock Text="{Binding Address}" Margin="3,0" VerticalAlignment="Center" FontSize="10" Opacity="0.7"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 </StackPanel>
+                            </ToolBar>
 
-                            </StackPanel>
-                        </ToolBar>
+                            <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightGray">
+                                <StackPanel Width="Auto" MinWidth="140">
+                                    <TextBlock Margin="0,5,0,0" VerticalAlignment="Center" Text="Перейти в планировщик"/>
+                                    <Button BorderThickness="1" Margin="0,2,0,0" Height="30" Background="Transparent">
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:ImageAwesome Icon="Regular_PlusSquare" Height="25"/>
+                                            <TextBlock Margin="5,0" Text="Добавить" VerticalAlignment="Center"></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </ToolBar>
+
+                            <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="4" Background="LightGray">
+                                <StackPanel Width="Auto" MinWidth="140">
+                                    <TextBlock Margin="0,5,0,0" Text="Получатели" HorizontalAlignment="Center"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Center">
+                                        <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
+                                        <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
+                                        <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </ToolBar>
 
                     </ToolBarTray>
 

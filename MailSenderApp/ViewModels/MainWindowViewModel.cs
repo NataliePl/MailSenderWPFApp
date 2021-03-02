@@ -42,6 +42,9 @@ namespace MailSenderApp.ViewModels
         private string _ToolServersTitle = "Сервера";
         public string ToolServersTitle { get => _ToolServersTitle; set => Set(ref _ToolServersTitle, value); }
 
+        private string _ToolRecipientsTitle = "Отправители";
+        public string ToolRecipientsTitle { get => _ToolServersTitle; set => Set(ref _ToolServersTitle, value); }
+
         #endregion
 
 
@@ -109,7 +112,7 @@ namespace MailSenderApp.ViewModels
 
         private void OnLoadRecipientsCommandExecuted(object p)
         {
-            //LoadServers();
+            LoadRecipients();
         }
 
         private void LoadRecipients()
@@ -128,16 +131,11 @@ namespace MailSenderApp.ViewModels
         {
             var serverEditDialogViewModel = new ServerEditDialogViewModel();
 
-            //MessageBox.Show("gfhgfd");
-
             var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
             displayRootRegistry.ShowPresentation(serverEditDialogViewModel);
         }
-        //private void OpenAddServerWindow ()
-        //{
-            
-        //}
+
 
         public ICommand CloseAppCommand { get; }
         private bool CanCloseAppCommandExecute(object p)

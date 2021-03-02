@@ -22,11 +22,18 @@ namespace MailSenderApp
     public partial class App : Application
     {
         private static IHost _Hosting;
-
+        public DisplayRootRegistry displayRootRegistry = new DisplayRootRegistry();
         public static IHost Hosting => _Hosting
             ??= CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
 
         public static IServiceProvider Services => Hosting.Services;
+
+        public App()
+        {
+            displayRootRegistry.RegisterWindowType<MainWindowViewModel, MainWindow>();
+            displayRootRegistry.RegisterWindowType<ServerEditDialogViewModel, ServerEditDialog>();
+           
+        }
 
         public static IHostBuilder CreateHostBuilder(string[] args) => (HostBuilder)Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration(opt => opt.AddJsonFile("appsettings.json", false, true))

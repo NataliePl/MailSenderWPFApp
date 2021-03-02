@@ -1,0 +1,53 @@
+﻿<Window x:Class="MailSenderApp.ServerEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:data="clr-namespace:MailSenderApp.Data"
+ xmlns:local="clr-namespace:MailSenderApp"
+ Title="Почтовый сервер"
+ WindowStartupLocation="CenterOwner"
+ Width="330" Height="250">
+
+    <DockPanel Margin="5">
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="DockPanel">
+                    <Setter Property="Margin" Value="3"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="5, 2"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5, 2"/>
+                </Style>
+            </StackPanel.Resources>
+            <DockPanel>
+                <TextBlock Text="Имя сервера" Width="80"></TextBlock>
+                <TextBox MinWidth="130"></TextBox>
+                <TextBlock Text="ID"></TextBlock>
+                <TextBox DockPanel.Dock="Right" IsReadOnly="True"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Адрес" Width="80"></TextBlock>
+                <TextBox DockPanel.Dock="Right"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Порт" Width="80"></TextBlock>
+                <TextBox MinWidth="100"></TextBox>
+                <TextBlock Text="SSL"></TextBlock>
+                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"></CheckBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Логин" Width="80"></TextBlock>
+                <TextBox DockPanel.Dock="Right"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Пароль" Width="85"></TextBlock>
+                <PasswordBox MinWidth="150"></PasswordBox>
+            </DockPanel>
+            <Button Content="Сохранить" Margin="10,10"></Button>
+
+        </StackPanel>
+    </DockPanel>
+</Window>

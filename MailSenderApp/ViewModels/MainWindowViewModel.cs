@@ -109,7 +109,7 @@ namespace MailSenderApp.ViewModels
 
         private void OnLoadRecipientsCommandExecuted(object p)
         {
-            LoadServers();
+            //LoadServers();
         }
 
         private void LoadRecipients()
@@ -127,13 +127,17 @@ namespace MailSenderApp.ViewModels
         private void OpenAddServerWindowCommandExecuted(object p)
         {
             var serverEditDialogViewModel = new ServerEditDialogViewModel();
-            MessageBox.Show("gfhgfd");
 
-            //var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+            //MessageBox.Show("gfhgfd");
 
-            //var serverEditDialogViewModel = new ServerEditDialogViewModel();
-            //displayRootRegistry.ShowPresentation(serverEditDialogViewModel);
+            var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+            displayRootRegistry.ShowPresentation(serverEditDialogViewModel);
         }
+        //private void OpenAddServerWindow ()
+        //{
+            
+        //}
 
         public ICommand CloseAppCommand { get; }
         private bool CanCloseAppCommandExecute(object p)

@@ -13,9 +13,9 @@ namespace MailSender.lib.Interfaces
 
         void MailSended();
 
-        int SendersCount { get; }
+        //int SendersCount { get; }
 
-        int RecipientsCount { get; }
+        //int RecipientsCount { get; }
 
         TimeSpan UpTime { get; }
     }

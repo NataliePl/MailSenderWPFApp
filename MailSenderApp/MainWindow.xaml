@@ -72,7 +72,7 @@
                                               />
                         </ToolBar>
 
-                        <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
+                        <!--<ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
                                 <StackPanel Width="Auto" MinWidth="200">
                                     <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
@@ -92,7 +92,7 @@
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
                                 </StackPanel>
-                            </ToolBar>
+                            </ToolBar>-->
 
                             <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightGray">
                                 <StackPanel Width="Auto" MinWidth="140">

@@ -19,9 +19,9 @@ namespace MailSenderApp.Infrastructure.Services
 
         public int SendedMailsCount => _SendedMailsCount;
         public event EventHandler SendedMailsCountChanged;
-        public int SendersCount => TestData.Senders.Count();
+        //public int SendersCount => TestData.Senders.Count();
 
-        public int RecipientsCount => TestData.Recipients.Count();
+        //public int RecipientsCount => TestData.Recipients.Count();
 
         private readonly Stopwatch _StopwatchTimer = Stopwatch.StartNew();
         public TimeSpan UpTime => _StopwatchTimer.Elapsed;

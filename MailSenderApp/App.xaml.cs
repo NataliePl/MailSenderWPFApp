@@ -44,6 +44,8 @@ namespace MailSenderApp
         {
             services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<ServersRepository>();
+            services.AddSingleton<SendersRepository>();
+            services.AddSingleton<RecipientsRepository>();
             services.AddSingleton<StatisticViewModel>();
             services.AddSingleton<IMailService, DebugMailService>();
             services.AddSingleton<IStatistic, InMemoryStatisticService>();

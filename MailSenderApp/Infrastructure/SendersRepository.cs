@@ -33,6 +33,6 @@ namespace MailSenderApp.Infrastructure
             _Senders.Remove(sender);
         }
 
-        public int Count() => _Senders.Count();
+        //public int Count() => _Senders.Count();
     }
 }

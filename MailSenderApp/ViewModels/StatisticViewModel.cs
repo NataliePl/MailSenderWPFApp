@@ -15,9 +15,9 @@ namespace MailSenderApp.ViewModels
 
         public int MailsSendedCount => _Statistic.SendedMailsCount;
 
-        public int SendersCount => _Statistic.SendersCount;
+        //public int SendersCount => _Statistic.SendersCount;
 
-        public int RecipientsCount => _Statistic.RecipientsCount;
+        //public int RecipientsCount => _Statistic.RecipientsCount;
 
         public TimeSpan UpTime => _Statistic.UpTime;
 

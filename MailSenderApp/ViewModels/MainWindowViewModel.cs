@@ -28,11 +28,15 @@ namespace MailSenderApp.ViewModels
 
         private readonly RecipientsRepository _Recipients;
 
+        private readonly SendersRepository _Senders;
+
         private readonly IMailService _MailService;
 
-        public MainWindowViewModel(ServersRepository Servers, IMailService MailService)
+        public MainWindowViewModel(ServersRepository Servers, SendersRepository Senders, RecipientsRepository Recipients, IMailService MailService)
         {
             _Servers = Servers;
+            _Senders = Senders;
+            _Recipients = Recipients;
             _MailService = MailService;
 
             CloseAppCommand = new LambdaCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
@@ -42,8 +46,11 @@ namespace MailSenderApp.ViewModels
         private string _ToolServersTitle = "Сервера";
         public string ToolServersTitle { get => _ToolServersTitle; set => Set(ref _ToolServersTitle, value); }
 
-        private string _ToolRecipientsTitle = "Отправители";
+        private string _ToolRecipientsTitle = "Получатели";
         public string ToolRecipientsTitle { get => _ToolServersTitle; set => Set(ref _ToolServersTitle, value); }
+
+        private string _ToolSendersTitle = "Отправители";
+        public string ToolSendersTitle { get => _ToolSendersTitle; set => Set(ref _ToolSendersTitle, value); }
 
         #endregion
 
@@ -54,8 +61,9 @@ namespace MailSenderApp.ViewModels
         public string Status { get => _Status; set => Set(ref _Status, value); }
         #endregion
 
-        #region Загрузка серверов
+        #region Сервера тулбара
         public ObservableCollection<Server> Servers { get; } = new();
+        public ObservableCollection<Sender> Senders { get; } = new();
 
         private ICommand _LoadServersCommand;
 
@@ -73,6 +81,19 @@ namespace MailSenderApp.ViewModels
         {
             foreach (var server in _Servers.GetAll())
                 Servers.Add(server);
+
+            foreach (var sender in _Senders.GetAll())
+                Senders.Add(sender);
+        }
+
+        private ICommand _AddServerCommand;
+        public ICommand AddServerCommand => _AddServerCommand
+            ??= new LambdaCommand(AddServerCommandExecuted, CanAddServerExecute);
+
+        private bool CanAddServerExecute(object p) => true;
+        private void AddServerCommandExecuted(object p)
+        {
+            _Servers.Add((Server)p);
         }
         #endregion
 
@@ -91,21 +112,11 @@ namespace MailSenderApp.ViewModels
         #endregion
 
 
-        private ICommand _AddServerCommand;
-
-        public ICommand AddServerCommand => _AddServerCommand
-            ??= new LambdaCommand(AddServerCommandExecuted, CanAddServerExecute);
-
-        private bool CanAddServerExecute(object p) => true;
-        private void AddServerCommandExecuted(object p)
-        {           
-            _Servers.Add((Server)p);            
-        }
-
         #region Загрузка получателей
         public ObservableCollection<Recipient> Recipients { get; } = new();
 
-        public ICommand LoadRecipientsCommand => _LoadServersCommand
+        private ICommand _LoadRecipientsCommand;
+        public ICommand LoadRecipientsCommand => _LoadRecipientsCommand
             ??= new LambdaCommand(OnLoadRecipientsCommandExecuted, CanLoadRecipientsCommandExecute);
 
         private bool CanLoadRecipientsCommandExecute(object p) => Servers.Count == 0;
@@ -114,11 +125,30 @@ namespace MailSenderApp.ViewModels
         {
             LoadRecipients();
         }
-
         private void LoadRecipients()
         {
             foreach (var recipient in _Recipients.GetAll())
-                Recipients.Add(recipient);
+                _Recipients.Add(recipient);
+        }
+        #endregion
+
+        #region Загрузка отправителей
+        
+
+        private ICommand _LoadSendersCommand;
+        public ICommand LoadSendersCommand => _LoadSendersCommand
+            ??= new LambdaCommand(OnLoadSendersCommandExecuted, CanLoadSendersCommandExecute);
+
+        private bool CanLoadSendersCommandExecute(object p) => true;
+
+        private void OnLoadSendersCommandExecuted(object p)
+        {
+            LoadSenders();
+        }
+        private void LoadSenders()
+        {
+            foreach (var sender in _Senders.GetAll())
+                _Senders.Add(sender);
         }
         #endregion
 
@@ -135,8 +165,6 @@ namespace MailSenderApp.ViewModels
 
             displayRootRegistry.ShowPresentation(serverEditDialogViewModel);
         }
-
-
         public ICommand CloseAppCommand { get; }
         private bool CanCloseAppCommandExecute(object p)
         {
@@ -146,7 +174,5 @@ namespace MailSenderApp.ViewModels
         {
             Application.Current.Shutdown();
         }
-
-
     }
 }

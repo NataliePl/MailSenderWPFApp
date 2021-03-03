@@ -62,6 +62,9 @@
                             <contr:ItemsPanel Title="{Binding ToolServersTitle}"
                                               ItemsList="{Binding Servers, Mode=OneWay}"
                                               AddCommand="{Binding OpenAddServerWindowCommand}"
+                                              EditItemCommand=""
+                                              RemoveItemCommand=""
+                                              SelectedItem=""
                                               />
                         </ToolBar>
 
@@ -69,6 +72,9 @@
                             <contr:ItemsPanel Title="{Binding ToolSendersTitle}"
                                               ItemsList="{Binding Senders, Mode=OneWay}"
                                               AddCommand="{Binding OpenAddSendersWindowCommand}"
+                                              EditItemCommand=""
+                                              RemoveItemCommand=""
+                                              SelectedItem=""
                                               />
                         </ToolBar>
 

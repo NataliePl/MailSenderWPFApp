@@ -1,6 +1,8 @@
-﻿namespace MailSenderApp.Models
+﻿using MailSenderApp.Models.Base;
+
+namespace MailSenderApp.Models
 {
-    public class Recipient
+    public class Recipient : Entity
     {
         public string Name { get; set; }
 

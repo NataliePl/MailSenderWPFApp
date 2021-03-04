@@ -63,7 +63,12 @@ namespace MailSenderApp.ViewModels
 
         #region Сервера тулбара
         public ObservableCollection<Server> Servers { get; } = new();
+
         public ObservableCollection<Sender> Senders { get; } = new();
+
+        public ObservableCollection<Recipient> Recipients { get; } = new();
+
+        public ObservableCollection<Message> Messages { get; } = new();
 
         private ICommand _LoadServersCommand;
 
@@ -113,7 +118,7 @@ namespace MailSenderApp.ViewModels
 
 
         #region Загрузка получателей
-        public ObservableCollection<Recipient> Recipients { get; } = new();
+        
 
         private ICommand _LoadRecipientsCommand;
         public ICommand LoadRecipientsCommand => _LoadRecipientsCommand

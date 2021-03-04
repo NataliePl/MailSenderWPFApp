@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MailSenderApp.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MailSenderApp.Models
 {
-    public class Sender
+    public class Sender : Entity
     {        
         public string Name { get; set; }
 

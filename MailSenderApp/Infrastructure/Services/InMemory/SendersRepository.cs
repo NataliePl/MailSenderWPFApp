@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MailSenderApp.Infrastructure
+namespace MailSenderApp.Infrastructure.InMemory
+
 {
     class SendersRepository
     {

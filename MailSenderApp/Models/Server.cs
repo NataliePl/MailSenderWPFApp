@@ -3,8 +3,7 @@
 namespace MailSenderApp.Models
 {
     public class Server : Entity
-    {
-        public string Id { get; set; }
+    {        
         public string Name { get; set; }
 
         public string Address { get; set; }

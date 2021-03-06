@@ -10,7 +10,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         xmlns:contr="clr-namespace:MailSenderApp.Controls"
-        xmlns:vm="clr-namespace:MailSenderApp.ViewModels"        
+        xmlns:vm="clr-namespace:MailSenderApp.ViewModels" xmlns:views="clr-namespace:MailSenderApp.Views"
         Title="{Binding Title}" 
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Height="600" Width="800">
@@ -34,7 +34,7 @@
                 <ResizeGrip/>
             </StatusBarItem>
             <StatusBarItem DockPanel.Dock="Right">
-                <Button Name="LoadDataBtn"  Content="Загрузить данные" Command="{Binding LoadServersCommand}"/>
+                <Button Name="LoadDataBtn"  Content="Загрузить данные" Command="{Binding LoadDataCommand}"/>
             </StatusBarItem>
             <StatusBarItem Content="{Binding Status}"/>
         </StatusBar>
@@ -43,20 +43,6 @@
             <TabItem Header="Списки">
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top" HorizontalAlignment="Stretch">
-                        <!--<ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" Background="LightGray" HorizontalAlignment="Stretch">
-                            <StackPanel Width="Auto" MinWidth="140">
-                                <TextBlock Text="Сервера" HorizontalAlignment="Center"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                                    <Button ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent"></Button>
-                                    <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
-                                    <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
-                                </StackPanel>
-                                <ComboBox Width="130" SelectedIndex="0" 
-                                          ItemsSource="{Binding Servers}">
-                                </ComboBox> 
-                            </StackPanel>                  
-                           
-                        </ToolBar>-->
 
                         <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="1" Background="LightGray">
                             <contr:ItemsPanel Title="{Binding ToolServersTitle}"
@@ -77,28 +63,6 @@
                                               SelectedItem=""
                                               />
                         </ToolBar>
-
-                        <!--<ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="2" Background="LightGray">
-                                <StackPanel Width="Auto" MinWidth="200">
-                                    <TextBlock Text="Отправители" HorizontalAlignment="Center"/>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                                        <Button Command="{Binding OpenAddServerWindowCommand}" ToolTip="Добавить" FontSize="25" fa:Awesome.Content="Regular_PlusSquare" Background="Transparent" BorderThickness="1"></Button>
-                                        <Button ToolTip="Редактировать" FontSize="25" fa:Awesome.Content="Solid_Edit" Background="Transparent"></Button>
-                                        <Button ToolTip="Удалить" FontSize="25" fa:Awesome.Content="Solid_Trash" Background="Transparent"></Button>
-                                    </StackPanel>
-                                    <ComboBox MinWidth="190" SelectedIndex="0"
-                                          ItemsSource="{x:Static data:TestData.Senders}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate DataType="models:Sender">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}"/>
-                                                    <TextBlock Text="{Binding Address}" Margin="3,0" VerticalAlignment="Center" FontSize="10" Opacity="0.7"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                </StackPanel>
-                            </ToolBar>-->
 
                             <ToolBar ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded" BandIndex="3" Background="LightGray">
                                 <StackPanel Width="Auto" MinWidth="140">
@@ -127,18 +91,9 @@
                     </ToolBarTray>
 
                     <GroupBox Header="Список получателей" Margin="3">
-                        <DataGrid AutoGenerateColumns="False"
-                                  IsReadOnly="True"
-                                  GridLinesVisibility="Vertical"
-                                  VerticalGridLinesBrush="DarkGray"
-                                  AlternatingRowBackground="LightGray"
-                                  ItemsSource="{x:Static data:TestData.Recipients}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" MinWidth="50" MaxWidth="90"/>
-                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
-                                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" MinWidth="150" MaxWidth="200"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <Grid>
+                            <views:RecipientsView/>
+                        </Grid>
                     </GroupBox>
                 </DockPanel>
             </TabItem>
@@ -277,7 +232,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Письма">
-                        <ListBox MinWidth="130" ItemsSource="{x:Static data:TestData.Messages}"
+                        <ListBox MinWidth="130" ItemsSource="{Binding Messages}"
                                  DisplayMemberPath="Title"
                                  Name="MessagesList"/>
                     </GroupBox>

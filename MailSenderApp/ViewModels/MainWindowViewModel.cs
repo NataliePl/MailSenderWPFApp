@@ -78,16 +78,16 @@ namespace MailSenderApp.ViewModels
 
         public ObservableCollection<Message> Messages { get; } = new();
 
-        private ICommand _LoadServersCommand;
+        private ICommand _LoadDataCommand;
 
-        public ICommand LoadServersCommand => _LoadServersCommand
-            ??= new LambdaCommand(OnLoadServersCommandExecuted, CanLoadServersCommandExecute);
+        public ICommand LoadDataCommand => _LoadDataCommand
+            ??= new LambdaCommand(OnLoadDataCommandExecuted, CanLoadDataCommandExecute);
 
-        private bool CanLoadServersCommandExecute(object p) => Servers.Count == 0;
+        private bool CanLoadDataCommandExecute(object p) => Servers.Count == 0;
 
-        private void OnLoadServersCommandExecuted(object p)
+        private void OnLoadDataCommandExecuted(object p)
         {
-            LoadServers();
+            LoadData();
         }
 
         private static void Load<T>(ObservableCollection<T> collection, IRepository<T> rep) where T: Entity
@@ -97,15 +97,12 @@ namespace MailSenderApp.ViewModels
                 collection.Add(item);
         }
 
-        private void LoadServers()
+        private void LoadData()
         {
             Load(Servers, _Servers);
             Load(Senders, _Senders);
             Load(Recipients, _Recipients);
             Load(Messages, _Messages);
-
-            foreach (var sender in _Senders.GetAll())
-                Senders.Add(sender);
         }
 
         private ICommand _AddServerCommand;

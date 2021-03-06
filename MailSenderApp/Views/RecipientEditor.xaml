@@ -35,11 +35,14 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Id:" Grid.Column="0" Grid.Row="0" />
         <TextBox Grid.Column="1" Grid.Row="0"
-                 Text="{Binding SelectedRecipient.Id}"/>
+                 Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}"
+                 Validation.Error="OnIdValidationError"
+                 IsReadOnly="False"/>
 
         <TextBlock Text="Имя:" Grid.Column="0" Grid.Row="1" />
         <TextBox Grid.Column="1" Grid.Row="1"
-                 Text="{Binding SelectedRecipient.Name}"/>
+                 Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True}"
+                 Validation.Error="OnNameValidationError"/>
 
         <TextBlock Text="Адрес" Grid.Column="0" Grid.Row="2"/>
         <TextBox Grid.Column="1" Grid.Row="2"

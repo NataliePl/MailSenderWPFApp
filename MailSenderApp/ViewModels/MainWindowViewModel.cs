@@ -31,6 +31,30 @@ namespace MailSenderApp.ViewModels
         private readonly IRepository<Sender> _Senders;
         private readonly IRepository<Message> _Messages;
 
+        #region SelectedRecipient Выбранный получатель
+        private Recipient _SelectedRecipient;
+        public Recipient SelectedRecipient { get => _SelectedRecipient; set => Set(ref _SelectedRecipient, value); }
+
+        #endregion
+
+        #region SelectedSender Выбранный отправитель
+        private Sender _SelectedSender;
+        public Sender SelectedSender { get => _SelectedSender; set => Set(ref _SelectedSender, value); }
+
+        #endregion
+
+        #region SelectedServer Выбранный сервер
+        private Server _SelectedServer;
+        public Server SelectedServer { get => _SelectedServer; set => Set(ref _SelectedServer, value); }
+
+        #endregion
+
+        #region SelectedMessage Выбранное письмо
+        private Message _SelectedMessage;
+        public Message SelectedMessage { get => _SelectedMessage; set => Set(ref _SelectedMessage, value); }
+
+        #endregion
+
         private readonly IMailService _MailService;
 
         public MainWindowViewModel(
@@ -131,51 +155,51 @@ namespace MailSenderApp.ViewModels
         #endregion
 
 
-        #region Загрузка получателей
+        //#region Загрузка получателей
         
 
-        private ICommand _LoadRecipientsCommand;
-        public ICommand LoadRecipientsCommand => _LoadRecipientsCommand
-            ??= new LambdaCommand(OnLoadRecipientsCommandExecuted, CanLoadRecipientsCommandExecute);
+        //private ICommand _LoadRecipientsCommand;
+        //public ICommand LoadRecipientsCommand => _LoadRecipientsCommand
+        //    ??= new LambdaCommand(OnLoadRecipientsCommandExecuted, CanLoadRecipientsCommandExecute);
 
-        private bool CanLoadRecipientsCommandExecute(object p) => Servers.Count == 0;
+        //private bool CanLoadRecipientsCommandExecute(object p) => Servers.Count == 0;
 
-        private void OnLoadRecipientsCommandExecuted(object p)
-        {
-            LoadRecipients();
-        }
-        private void LoadRecipients()
-        {
-            foreach (var recipient in _Recipients.GetAll())
-                _Recipients.Add(recipient);
-        }
-        #endregion
+        //private void OnLoadRecipientsCommandExecuted(object p)
+        //{
+        //    LoadRecipients();
+        //}
+        //private void LoadRecipients()
+        //{
+        //    foreach (var recipient in _Recipients.GetAll())
+        //        _Recipients.Add(recipient);
+        //}
+        //#endregion
 
-        #region Загрузка отправителей
+        //#region Загрузка отправителей
         
 
-        private ICommand _LoadSendersCommand;
-        public ICommand LoadSendersCommand => _LoadSendersCommand
-            ??= new LambdaCommand(OnLoadSendersCommandExecuted, CanLoadSendersCommandExecute);
+        //private ICommand _LoadSendersCommand;
+        //public ICommand LoadSendersCommand => _LoadSendersCommand
+        //    ??= new LambdaCommand(OnLoadSendersCommandExecuted, CanLoadSendersCommandExecute);
 
-        private bool CanLoadSendersCommandExecute(object p) => true;
+        //private bool CanLoadSendersCommandExecute(object p) => true;
 
-        private void OnLoadSendersCommandExecuted(object p)
-        {
-            LoadSenders();
-        }
-        private void LoadSenders()
-        {
-            foreach (var sender in _Senders.GetAll())
-                _Senders.Add(sender);
-        }
-        #endregion
+        //private void OnLoadSendersCommandExecuted(object p)
+        //{
+        //    LoadSenders();
+        //}
+        //private void LoadSenders()
+        //{
+        //    foreach (var sender in _Senders.GetAll())
+        //        _Senders.Add(sender);
+        //}
+        //#endregion
 
         private ICommand _OpenAddServerWindowCommand;
 
         public ICommand OpenAddServerWindowCommand => _OpenAddServerWindowCommand
-            ??= new LambdaCommand(OpenAddServerWindowCommandExecuted, CanLoadRecipientsCommandExecute);
-
+            ??= new LambdaCommand(OpenAddServerWindowCommandExecuted, CanLoadServersCommandExecute);
+        private bool CanLoadServersCommandExecute(object p) => Servers.Count == 0;
         private void OpenAddServerWindowCommandExecuted(object p)
         {
             var serverEditDialogViewModel = new ServerEditDialogViewModel();

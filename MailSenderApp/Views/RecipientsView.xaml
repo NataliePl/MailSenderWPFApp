@@ -29,7 +29,8 @@
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="DarkGray"
                                   AlternatingRowBackground="LightGray"
-                                    ItemsSource="{Binding Recipients}"                
+                                  ItemsSource="{Binding Recipients}"
+                                  SelectedItem="{Binding SelectedRecipient}"
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" MinWidth="50" MaxWidth="90"/>

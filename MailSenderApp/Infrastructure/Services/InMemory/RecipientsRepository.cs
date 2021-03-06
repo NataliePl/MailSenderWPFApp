@@ -1,38 +1,31 @@
-﻿using MailSenderApp.Models;
-using System;
-using System.Collections.Generic;
+﻿using MailSenderApp.Infrastructure.Services.InMemory;
+using MailSenderApp.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MailSenderApp.Infrastructure.Services.InMemory
+namespace MailSenderApp.Infrastructure.InMemory
+
 {
-    class RecipientsRepository
+    class RecipientsRepository : RepositoryInMemory<Recipient>
     {
-        private List<Recipient> _Recipients;
 
-        public RecipientsRepository()
+        public RecipientsRepository() : base(Enumerable.Range(1, 100)
+            .Select(i => new Recipient
+            {
+                Id = i,
+                Name = $"Имя-{i}",
+                Address = $"sender{i}@server.com"
+
+            }))
         {
-            _Recipients = Enumerable.Range(1, 100)
-                .Select(i => new Recipient
-                {
-                    Name = $"Получатель {i}",
-                    Address = $"recipient_{i}@server.com"
-                }).ToList();
         }
 
-        public IEnumerable<Recipient> GetAll() => _Recipients;
-
-        public void Add (Recipient recipient)
+        public override void Update(Recipient item)
         {
-            _Recipients.Add(recipient);
-        }
+            var db_item = GetById(item.Id);
+            if (db_item is null || ReferenceEquals(db_item, item)) return;
 
-        public void Remove (Recipient recipient)
-        {
-            _Recipients.Remove(recipient);
+            db_item.Name = item.Name;
+            db_item.Address = item.Address;
         }
-
-        public int Count() => _Recipients.Count();
     }
 }

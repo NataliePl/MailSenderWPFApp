@@ -12,6 +12,8 @@ using System.Windows.Input;
 using MailSender.lib.Interfaces;
 using MailSenderApp.Infrastructure.Services;
 using System.Windows;
+using MailSenderApp.Infrastructure.InMemory;
+using MailSenderApp.Models.Base;
 
 namespace MailSenderApp.ViewModels
 {
@@ -24,19 +26,25 @@ namespace MailSenderApp.ViewModels
 
         #endregion
 
-        private readonly ServersRepository _Servers;
-
-        private readonly RecipientsRepository _Recipients;
-
-        private readonly SendersRepository _Senders;
+        private readonly IRepository<Server> _Servers;
+        private readonly IRepository<Recipient> _Recipients;
+        private readonly IRepository<Sender> _Senders;
+        private readonly IRepository<Message> _Messages;
 
         private readonly IMailService _MailService;
 
-        public MainWindowViewModel(ServersRepository Servers, SendersRepository Senders, RecipientsRepository Recipients, IMailService MailService)
+        public MainWindowViewModel(
+            IRepository<Server> Servers, 
+            IRepository<Sender> Senders,
+            IRepository<Recipient> Recipients,
+            IRepository<Message> Messages,
+            IMailService MailService)
         {
             _Servers = Servers;
             _Senders = Senders;
             _Recipients = Recipients;
+            _Messages = Messages;
+
             _MailService = MailService;
 
             CloseAppCommand = new LambdaCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
@@ -82,10 +90,19 @@ namespace MailSenderApp.ViewModels
             LoadServers();
         }
 
+        private static void Load<T>(ObservableCollection<T> collection, IRepository<T> rep) where T: Entity
+        {
+            collection.Clear();
+            foreach (var item in rep.GetAll())
+                collection.Add(item);
+        }
+
         private void LoadServers()
         {
-            foreach (var server in _Servers.GetAll())
-                Servers.Add(server);
+            Load(Servers, _Servers);
+            Load(Senders, _Senders);
+            Load(Recipients, _Recipients);
+            Load(Messages, _Messages);
 
             foreach (var sender in _Senders.GetAll())
                 Senders.Add(sender);

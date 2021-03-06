@@ -1,39 +1,31 @@
-﻿using MailSenderApp.Models;
-using System;
-using System.Collections.Generic;
+﻿using MailSenderApp.Infrastructure.Services.InMemory;
+using MailSenderApp.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MailSenderApp.Infrastructure.InMemory
 
 {
-    class SendersRepository
+    class SendersRepository : RepositoryInMemory<Sender>
     {
-        private List<Sender> _Senders;
 
-        public SendersRepository()
+        public SendersRepository() : base(Enumerable.Range(1, 10)
+            .Select(i => new Sender
+            {
+                Id = i,
+                Name = $"Имя-{i}",
+                Address = $"sender{i}@server.com"
+              
+            }))
         {
-            _Senders = Enumerable.Range(1, 10)
-                .Select(i => new Sender
-                {
-                    Name = $"Отправитель {i}",
-                    Address = $"sender_{i}@server.com"
-                }).ToList();
         }
 
-        public IEnumerable<Sender> GetAll() => _Senders;
-
-        public void Add(Sender sender)
+        public override void Update(Sender item)
         {
-            _Senders.Add(sender);
-        }
+            var db_item = GetById(item.Id);
+            if (db_item is null || ReferenceEquals(db_item, item)) return;
 
-        public void Remove(Sender sender)
-        {
-            _Senders.Remove(sender);
+            db_item.Name = item.Name;
+            db_item.Address = item.Address;
         }
-
-        //public int Count() => _Senders.Count();
     }
 }

@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MailSender.lib.Service;
+using MailSenderApp.Infrastructure.InMemory;
+using MailSenderApp.Models;
 
 namespace MailSenderApp
 {
@@ -43,10 +45,14 @@ namespace MailSenderApp
         private static void ConfigureServices (HostBuilderContext host, IServiceCollection services)
         {
             services.AddSingleton<MainWindowViewModel>();
-            services.AddSingleton<ServersRepository>();
-            services.AddSingleton<SendersRepository>();
-            services.AddSingleton<RecipientsRepository>();
             services.AddSingleton<StatisticViewModel>();
+
+
+            services.AddSingleton<IRepository<Server>, ServersRepository>();
+            services.AddSingleton<IRepository<Sender>, SendersRepository>();
+            services.AddSingleton<IRepository<Message>, MessagesRepository>();
+            services.AddSingleton<IRepository<Recipient>, RecipientsRepository>();
+            
             services.AddSingleton<IMailService, DebugMailService>();
             services.AddSingleton<IStatistic, InMemoryStatisticService>();
         }

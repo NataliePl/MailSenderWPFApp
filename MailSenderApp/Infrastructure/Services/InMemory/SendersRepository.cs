@@ -5,7 +5,7 @@ using System.Linq;
 namespace MailSenderApp.Infrastructure.InMemory
 
 {
-    class SendersRepository : RepositoryInMemory<Sender>
+    public class SendersRepository : RepositoryInMemory<Sender>
     {
 
         public SendersRepository() : base(Enumerable.Range(1, 10)

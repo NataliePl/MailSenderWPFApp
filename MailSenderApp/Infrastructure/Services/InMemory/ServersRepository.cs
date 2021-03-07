@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MailSenderApp.Infrastructure.InMemory
 
 {
-    class ServersRepository: RepositoryInMemory<Server>
+    public class ServersRepository: RepositoryInMemory<Server>
     {
 
         public ServersRepository() : base(Enumerable.Range(1, 10)

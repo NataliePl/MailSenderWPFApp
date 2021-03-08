@@ -8,6 +8,11 @@ namespace MailSender.lib.Interfaces
 {
     public interface IMailService
     {
-        public void SendEMail(string From, string To, string Title, string Body);
+        IMailSender GetSender(string Server, int Posrt, bool SSL, string Login, string Password);
+    }
+
+    public interface IMailSender
+    {
+        void Send(string SenderAddress, string RecipientAddress, string Subject, string Body);
     }
 }

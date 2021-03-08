@@ -43,8 +43,8 @@
                 <TextBox DockPanel.Dock="Right"></TextBox>
             </DockPanel>
             <DockPanel>
-                <TextBlock Text="Пароль" Width="85"></TextBlock>
-                <PasswordBox MinWidth="150"></PasswordBox>
+                <TextBlock Text="Пароль" Width="80"></TextBlock>
+                <PasswordBox MinWidth="140"></PasswordBox>
             </DockPanel>
             <Button Content="Сохранить" Margin="10,10"></Button>
 

@@ -48,6 +48,18 @@ namespace MailSender.lib
             };
             client.Send(message);
         }
+
+        public void Send(string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body)
+        {
+            foreach (var recipient_address in RecipientsAddresses)
+                Send(SenderAddress, recipient_address, Subject, Body);
+        }
+
+        public void SendParallel(string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body)
+        {
+            foreach (var recipient_address in RecipientsAddresses)
+                ThreadPool.QueueUserWorkItem(_ => Send(SenderAddress, recipient_address, Subject, Body));
+        }
     }
 }
 

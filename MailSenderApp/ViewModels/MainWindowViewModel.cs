@@ -150,7 +150,8 @@ namespace MailSenderApp.ViewModels
 
         private void OnSendEmailCommandExecuted(object p)
         {
-            _MailService.SendEMail("Иванов", "Петров", "Тема", "Тело письма");
+            var sender = _MailService.GetSender("smtp.yandex.ru", 25, true, "login", "password");
+            sender.Send("Иванов", "Петров", "Тема", "Тело письма");
         }
         #endregion
 

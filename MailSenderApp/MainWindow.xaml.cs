@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MailSenderApp.Data;
+using MailSenderApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,19 +28,52 @@ namespace MailSenderApp
         public MainWindow()
         {
             InitializeComponent();
-            portsOfMailServer.Add("smtp.gmail.com", 25);
-            portsOfMailServer.Add("smtp.yandex.ru", 25);
-            portsOfMailServer.Add("smtp.mail.ru", 25);
+            //DataContext = new MainWindowViewModel();
+            //portsOfMailServer.Add("smtp.gmail.com", 25);
+            //portsOfMailServer.Add("smtp.yandex.ru", 25);
+            //portsOfMailServer.Add("smtp.mail.ru", 25);
         }
 
-        private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+        //private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Close();
+        //}
+
+        //private void ServerComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+
+        //}
+
+        private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {
-            Close();
+            ToolBar toolBar = sender as ToolBar;
+            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            if (overflowGrid != null)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
+            var mainPanelBorder = toolBar.Template.FindName("MainPanelBorder", toolBar) as FrameworkElement;
+            if (mainPanelBorder != null)
+            {
+                mainPanelBorder.Margin = new Thickness();
+            }
         }
 
-        private void ServerComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
+        
 
-        }
+        //private void OnAddServerButtonClick(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        //private void LoadDataBtn_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        //private void LoadDataBtn_Click_1(object sender, RoutedEventArgs e)
+        //{
+
+        //}
     }
 }

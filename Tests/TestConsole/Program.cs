@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading;
@@ -10,46 +11,52 @@ namespace TestConsole
     class Program
     {
         //количество столбцов и строк в матрице
-        private const int DIM = 10;
+        private const int DIM = 1000;
 
         static void Main(string[] args)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            Stopwatch stopwatch1 = new Stopwatch();
+            Stopwatch stopwatch2 = new Stopwatch();
             TimeSpan timeSpan = new TimeSpan();
 
+            #region Инициализация исходных матриц
             var A = InitializationMatrix();
-            Console.WriteLine("Матрица A:\n");
-            PrintMatrix(A);
+            //Console.WriteLine("Матрица A:\n");
+            //PrintMatrix(A);
 
             Thread.Sleep(100);
 
             var B = InitializationMatrix();
-            Console.WriteLine("Матрица B:\n");
-            PrintMatrix(B);
+            //Console.WriteLine("Матрица B:\n");
+            //PrintMatrix(B);
+            #endregion
 
-            //stopwatch.Start();
-            //var C = MultiplicationMatrixWithParallel(A, B);
-            //Console.WriteLine("Результат умножения матриц:\n");
-            //PrintMatrix(C);
-            //stopwatch.Stop();
-            
-            //timeSpan = stopwatch.Elapsed;
-            //Console.WriteLine(timeSpan.ToString());
 
-            stopwatch.Restart();
+            #region Произведение синхронным методом
+            //Синхронный метод
 
-            stopwatch.Start();
+            stopwatch1.Start();
             var D = MultiplicationMatrix(A, B);
-            Console.WriteLine("Результат умножения матриц:\n");
-            PrintMatrix(D);
-            stopwatch.Stop();
-           
-            timeSpan = stopwatch.Elapsed;
-            Console.WriteLine(timeSpan.ToString());
+            //Console.WriteLine("Результат умножения матриц при синхронном методе:\n");
+            //PrintMatrix(D);
+            stopwatch1.Stop();
 
+            timeSpan = stopwatch1.Elapsed;
+            Console.WriteLine("Время вычисления при синхронном методе: {0}\n", timeSpan.ToString());
+            #endregion
 
+            #region Произведение асинхронным методом
+            //асинхронный метод
 
+            stopwatch2.Start();
+            var C = MultiplicationMatrixWithParallel(A, B);
+            //Console.WriteLine("Результат умножения матриц с использованием класса Parallel: :\n");
+            //PrintMatrix(C);
+            stopwatch2.Stop();
 
+            timeSpan = stopwatch2.Elapsed;
+            Console.WriteLine("Время вычисления с использованием класса Parallel: {0}\n", timeSpan.ToString());
+            #endregion
 
             Console.ReadLine();
         }
@@ -64,39 +71,40 @@ namespace TestConsole
             {
                 for (int j = 0; j < DIM; j++)
                 {
-                    matrix[i, j] = rand.Next(1, 10);                    
-                }               
+                    matrix[i, j] = rand.Next(1, 10);
+                }
             }
 
             return matrix;
         }
+
         /// <summary>
         /// Умножение матриц с классом Parallel
         /// </summary>
-        /// 
 
-        //private static int[,] MultiplicationMatrixWithParallel(int[,] firstMatrix, int[,] secondMatrix)
-        //{
-        //    var resultMatrix = new int[DIM, DIM];
+        private static int[,] MultiplicationMatrixWithParallel(int[,] firstMatrix, int[,] secondMatrix)
+        {
+            {
+                var firstRows = firstMatrix.GetLength(0);
+                var secondRows = secondMatrix.GetLength(0);
+                var firstColumns = firstMatrix.GetLength(1);
+                var secondColumns = secondMatrix.GetLength(1);
+                if (firstColumns != secondRows)
+                    throw new ArgumentException();
 
-        //    for (int i = 0; i < firstMatrix.GetLength(0); i++)
-        //    {
-        //        for (int j = 0; j < secondMatrix.GetLength(1); j++)
-        //        {
-        //            for (int k = 0; k < secondMatrix.GetLength(0); k++)
-        //            {
-        //                resultMatrix[i, j] += firstMatrix[i, k] * secondMatrix[k, j];
-        //            }
-        //        }
-        //    }
+                var resultMatrix = new int[firstRows, secondColumns];
 
-        //    return resultMatrix;
-        //}
+                Parallel.For(0, firstRows, row =>
+                    Parallel.For(0, secondColumns, column =>
+                        resultMatrix[row, column] = Enumerable
+                            .Range(0, firstColumns)
+                            .Select(i => firstMatrix[row, i] * secondMatrix[column, i])
+                            .Sum())
+                );
+                return resultMatrix;
+            }
+        }
 
-        //private static async Task<int> MultiNumbersOfMatrixAsync (int[,] firstMatrix, int[,] secondMatrix, ref int i, ref int k, ref int j)
-        //{
-        //    return firstMatrix[i, k] * secondMatrix[k, j];
-        //}
         /// <summary>
         /// Умножение матриц без TPL
         /// </summary>
@@ -111,17 +119,20 @@ namespace TestConsole
                     for (int k = 0; k < secondMatrix.GetLength(0); k++)
                     {
                         resultMatrix[i, j] += firstMatrix[i, k] * secondMatrix[k, j];
-                    }
-                }
+                    }                   
+                }                
             }
 
             return resultMatrix;
         }
 
-        private static void PrintMatrix(int [,] matrix)
+    /// <summary>
+    /// Выведение матрицы в консоль
+    /// </summary>
+        private static void PrintMatrix(int[,] matrix)
         {
 
-            for(int i = 0; i < DIM; i++)
+            for (int i = 0; i < DIM; i++)
             {
                 for (int j = 0; j < DIM; j++)
                 {
@@ -129,24 +140,9 @@ namespace TestConsole
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
-        //var to = new MailAddress("79214126446@yandex.ru", "From_Наталия");
-        //var from = new MailAddress("n.plaksickaya@gmail.com", "To_Наталия");
-
-        //var message = new MailMessage(from, to);
-        //message.Subject = "Тестовое письмо";
-        //message.Body = "Текст тестового письма";
-
-        //var client = new SmtpClient("smtp.gmail.com", 25);
-        //client.EnableSsl = true;
-        ////client.Timeout = 1000;
-        //client.Credentials = new NetworkCredential
-        //{
-        //    UserName = "n.plaksickaya",
-        //    Password = "..."
-        //};
-
-        //client.Send(message);
+ 
     }
-    
+
 }

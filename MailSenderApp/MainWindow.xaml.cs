@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MailSenderApp.Data;
+using MailSenderApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +39,26 @@ namespace MailSenderApp
         }
 
         private void ServerComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void ToolBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            ToolBar toolBar = sender as ToolBar;
+            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            if (overflowGrid != null)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
+            var mainPanelBorder = toolBar.Template.FindName("MainPanelBorder", toolBar) as FrameworkElement;
+            if (mainPanelBorder != null)
+            {
+                mainPanelBorder.Margin = new Thickness();
+            }
+        }
+
+        private void OnAddServerButtonClick(object sender, RoutedEventArgs e)
         {
 
         }

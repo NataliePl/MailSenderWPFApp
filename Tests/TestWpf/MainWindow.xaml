@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestWpf"
+        xmlns:vm="clr-namespace:TestWpf.ViewModels"
         mc:Ignorable="d"
+        
 
-    Title="MailSenderTest" Height="500" Width="700">
+    Title="{Binding Title}" Height="500" Width="700">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
 
 
     <Grid  Width="auto" Height="auto" >
@@ -27,13 +32,7 @@
                               Grid.RowSpan="3"
                               VerticalAlignment="Stretch" 
                               />
-        <GridSplitter Grid.Row="1"                              
-                              Height="1"
-                              Background="Gray" 
-                              Grid.Column="1"
-                              VerticalAlignment="Bottom"
-                              HorizontalAlignment="Stretch"
-                              />
+        
 
         <GroupBox Height="auto" Width="auto" Header="От кого" Grid.Column="0" Grid.Row="0" Margin="2">
             <Canvas >                    
@@ -64,16 +63,32 @@
             </Canvas>
         </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.RowSpan="2"  Header="Сообщение" Margin="2">
-            <Canvas >
-                <TextBlock Text="Тема письма" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="5"/>
-                <TextBox Name="MessageThemeTB" Text="Тема письма" TextWrapping="Wrap" Width="300" Canvas.Left="30" Canvas.Top="25"/>
-                <TextBlock Text="Текст сообщения" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="55"/>
-                <TextBox Name="MessageTextTB" Text="Введите текст сообщения" Height="143" Width="300" Canvas.Left="30" Canvas.Top="75" TextWrapping ="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
-            </Canvas>
-        </GroupBox>
+        <Grid Grid.Column="1" Grid.RowSpan="3">
+           
+            <Grid.RowDefinitions>
+                <RowDefinition Height="500*"/>
+                <RowDefinition Height="60"/>
+                
+            </Grid.RowDefinitions>
+            <GroupBox  Header="Сообщение" Margin="2">
+                <DockPanel >
+                    <TextBlock Text="Тема письма"  DockPanel.Dock="Top"  TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="5"/>
+                    <TextBox Name="MessageThemeTB" Text="Тема письма" DockPanel.Dock="Top" TextWrapping="Wrap" Width="300" Canvas.Left="30" Canvas.Top="25"/>
+                    <TextBlock Text="Текст сообщения" DockPanel.Dock="Top" TextWrapping="Wrap" Canvas.Left="30" Canvas.Top="55"/>
+                    <TextBox DockPanel.Dock="Bottom" Name="MessageTextTB" Text="Введите текст сообщения" MinHeight="120" MaxHeight="500" Width="300" Canvas.Left="30" Canvas.Top="75" TextWrapping ="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
+                </DockPanel>
+            </GroupBox>
 
-        <Button Grid.Row="2" Grid.Column="1" Name="SendBTN" Content="Отправить" VerticalAlignment="Center" Margin="20" Click="Button_Click" />
+            <Button Grid.Row="1" Name="SendBTN" Content="Отправить" VerticalAlignment="Center" Margin="20" Click="Button_Click" />
+            <GridSplitter Grid.Row="0"                              
+                              Height="1"
+                              Background="Gray" 
+                              Grid.Column="1"
+                              VerticalAlignment="Bottom"
+                              HorizontalAlignment="Stretch"
+                              />
+        </Grid>
+       
         
 
 

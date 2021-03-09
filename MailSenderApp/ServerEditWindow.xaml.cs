@@ -18,10 +18,10 @@ namespace MailSenderApp
     /// Interaction logic for ServerEditDialog.xaml
     /// </summary>
 
- public partial class ServerEditDialog
+ public partial class ServerEditDialog : Window
     {
         
- private ServerEditDialog() => InitializeComponent();
+ public ServerEditDialog() => InitializeComponent();
         /// <summary>
         /// Обработчик события ввода текста
         /// Блокирует ввод нечисловых данных

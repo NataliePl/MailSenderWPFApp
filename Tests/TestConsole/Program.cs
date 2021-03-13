@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -10,139 +11,82 @@ namespace TestConsole
 {
     class Program
     {
-        //количество столбцов и строк в матрице
-        private const int DIM = 1000;
+        private enum SomeEnum
+        {
+            First = 4,
+            Second,
+            Third = 7,
+            Fourth
+        }
 
         static void Main(string[] args)
         {
-            Stopwatch stopwatch1 = new Stopwatch();
-            Stopwatch stopwatch2 = new Stopwatch();
-            TimeSpan timeSpan = new TimeSpan();
+            #region Задача 2
 
-            #region Инициализация исходных матриц
-            var A = InitializationMatrix();
-            //Console.WriteLine("Матрица A:\n");
-            //PrintMatrix(A);
+            //ЗАДАЧА 2. ОТВЕТ: По внутренним типам данных переменная int имеет системный тип System.Int32, 
+            //при присвоении obj значения int она также становится Int32. А short в качестве системного типа относится Int16.
 
-            Thread.Sleep(100);
+            int i = 1;
+            object obj = i;
+            ++i;
+            Console.WriteLine(i);
+            Console.WriteLine(i.GetType());
 
-            var B = InitializationMatrix();
-            //Console.WriteLine("Матрица B:\n");
-            //PrintMatrix(B);
+            short c = (short)i;
+            object obj2 = c;
+
+            Console.WriteLine(c);
+            Console.WriteLine(c.GetType());
+
+            Console.WriteLine(obj);
+            Console.WriteLine(obj.GetType());
+            Console.WriteLine((obj).GetType());
+
+
+            Console.WriteLine(obj2);
+            Console.WriteLine(obj2.GetType());
+            //Console.WriteLine((short)obj);
             #endregion
 
+            #region Задача 3
+            //ЗАДАЧА 3: 3. Есть таблица Users. Столбцы в ней — Id, Name. Написать SQL-запрос, который выведет имена пользователей, 
+            //начинающиеся на 'A' и встречающиеся в таблице более одного раза, и их количество.
+            //ОТВЕТ:
 
-            #region Произведение синхронным методом
-            //Синхронный метод
-
-            stopwatch1.Start();
-            var D = MultiplicationMatrix(A, B);
-            //Console.WriteLine("Результат умножения матриц при синхронном методе:\n");
-            //PrintMatrix(D);
-            stopwatch1.Stop();
-
-            timeSpan = stopwatch1.Elapsed;
-            Console.WriteLine("Время вычисления при синхронном методе: {0}\n", timeSpan.ToString());
+            //SELECT last_name, COUNT(*) AS Count FROM employees
+            //    WHERE last_name LIKE 'Ф%'
+            //    GROUP BY last_name
+            //    HAVING COUNT(*) > 1;
             #endregion
 
-            #region Произведение асинхронным методом
-            //асинхронный метод
+            #region Задача 4
 
-            stopwatch2.Start();
-            var C = MultiplicationMatrixWithParallel(A, B);
-            //Console.WriteLine("Результат умножения матриц с использованием класса Parallel: :\n");
-            //PrintMatrix(C);
-            stopwatch2.Stop();
+            //ЗАДАЧА 4. ОТВЕТ - выведется число 5 (если в перечислении не добавлять числа принудительно, они будут назначены значения предыдущего числа
 
-            timeSpan = stopwatch2.Elapsed;
-            Console.WriteLine("Время вычисления с использованием класса Parallel: {0}\n", timeSpan.ToString());
+            Console.WriteLine((int)SomeEnum.Second);
+            Console.WriteLine((int)SomeEnum.Fourth);
+
             #endregion
+
+            #region Задача 6 дополнительные материалы
+            //ЗАДАЧА 6.1 (ДОП).Как найти средний элемент в LinkedList за один проход?
+
+            //Создание рандомного ссылочного списка
+            LinkedList<int> linkedList = new LinkedList<int>();
+            Random random = new Random();
+            for (int j = 0; j < random.Next(10, 30); j++)
+            {
+                linkedList.AddFirst(random.Next(0, 100));
+            }
+            foreach (var v in linkedList)
+            {
+                Console.Write(v + " ");
+            }
 
             Console.ReadLine();
+
         }
-
-        private static int[,] InitializationMatrix()
-        {
-            var matrix = new int[DIM, DIM];
-
-            var rand = new Random();
-
-            for (int i = 0; i < DIM; i++)
-            {
-                for (int j = 0; j < DIM; j++)
-                {
-                    matrix[i, j] = rand.Next(1, 10);
-                }
-            }
-
-            return matrix;
-        }
-
-        /// <summary>
-        /// Умножение матриц с классом Parallel
-        /// </summary>
-
-        private static int[,] MultiplicationMatrixWithParallel(int[,] firstMatrix, int[,] secondMatrix)
-        {
-            {
-                var firstRows = firstMatrix.GetLength(0);
-                var secondRows = secondMatrix.GetLength(0);
-                var firstColumns = firstMatrix.GetLength(1);
-                var secondColumns = secondMatrix.GetLength(1);
-                if (firstColumns != secondRows)
-                    throw new ArgumentException();
-
-                var resultMatrix = new int[firstRows, secondColumns];
-
-                Parallel.For(0, firstRows, row =>
-                    Parallel.For(0, secondColumns, column =>
-                        resultMatrix[row, column] = Enumerable
-                            .Range(0, firstColumns)
-                            .Select(i => firstMatrix[row, i] * secondMatrix[column, i])
-                            .Sum())
-                );
-                return resultMatrix;
-            }
-        }
-
-        /// <summary>
-        /// Умножение матриц без TPL
-        /// </summary>
-        private static int[,] MultiplicationMatrix(int[,] firstMatrix, int[,] secondMatrix)
-        {
-            var resultMatrix = new int[DIM, DIM];
-
-            for (int i = 0; i < firstMatrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < secondMatrix.GetLength(1); j++)
-                {
-                    for (int k = 0; k < secondMatrix.GetLength(0); k++)
-                    {
-                        resultMatrix[i, j] += firstMatrix[i, k] * secondMatrix[k, j];
-                    }                   
-                }                
-            }
-
-            return resultMatrix;
-        }
-
-    /// <summary>
-    /// Выведение матрицы в консоль
-    /// </summary>
-        private static void PrintMatrix(int[,] matrix)
-        {
-
-            for (int i = 0; i < DIM; i++)
-            {
-                for (int j = 0; j < DIM; j++)
-                {
-                    Console.Write(matrix[i, j] + "\t");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-        }
- 
+      
     }
 
 }

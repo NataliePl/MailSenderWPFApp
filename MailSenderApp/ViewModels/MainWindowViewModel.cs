@@ -156,46 +156,6 @@ namespace MailSenderApp.ViewModels
         #endregion
 
 
-        //#region Загрузка получателей
-        
-
-        //private ICommand _LoadRecipientsCommand;
-        //public ICommand LoadRecipientsCommand => _LoadRecipientsCommand
-        //    ??= new LambdaCommand(OnLoadRecipientsCommandExecuted, CanLoadRecipientsCommandExecute);
-
-        //private bool CanLoadRecipientsCommandExecute(object p) => Servers.Count == 0;
-
-        //private void OnLoadRecipientsCommandExecuted(object p)
-        //{
-        //    LoadRecipients();
-        //}
-        //private void LoadRecipients()
-        //{
-        //    foreach (var recipient in _Recipients.GetAll())
-        //        _Recipients.Add(recipient);
-        //}
-        //#endregion
-
-        //#region Загрузка отправителей
-        
-
-        //private ICommand _LoadSendersCommand;
-        //public ICommand LoadSendersCommand => _LoadSendersCommand
-        //    ??= new LambdaCommand(OnLoadSendersCommandExecuted, CanLoadSendersCommandExecute);
-
-        //private bool CanLoadSendersCommandExecute(object p) => true;
-
-        //private void OnLoadSendersCommandExecuted(object p)
-        //{
-        //    LoadSenders();
-        //}
-        //private void LoadSenders()
-        //{
-        //    foreach (var sender in _Senders.GetAll())
-        //        _Senders.Add(sender);
-        //}
-        //#endregion
-
         private ICommand _OpenAddServerWindowCommand;
 
         public ICommand OpenAddServerWindowCommand => _OpenAddServerWindowCommand

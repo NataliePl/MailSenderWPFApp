@@ -9,22 +9,13 @@ namespace MailSenderApp.Data
 {
     internal static class TestData
     {
-        public static List<Server> Servers { get; } = Enumerable.Range(1, 10)
-            .Select(i => new Server
-            {
-                Name = $"Сервер-{i}",
-                Address = $"smtp.server{i}.com",
-                Login = $"Login-{i}",
-                Password = TextEncoder.Encode($"Password-{i}",7),
-                UseSSL = i % 2 == 0,
-            }).ToList();
 
-        public static List<Sender> Senders { get; } = Enumerable.Range(1, 10)
-            .Select(i => new Sender
-            {
-                Name = $"Отправитель {i}",
-                Address = $"sender_{i}@server.com"
-            }).ToList();
+        //public static List<Sender> Senders { get; } = Enumerable.Range(1, 10)
+        //    .Select(i => new Sender
+        //    {
+        //        Name = $"Отправитель {i}",
+        //        Address = $"sender_{i}@server.com"
+        //    }).ToList();
 
         public static List<Recipient> Recipients { get; } = Enumerable.Range(1, 10)
             .Select(i => new Recipient

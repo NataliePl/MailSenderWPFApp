@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MailSenderApp.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MailSenderApp.Models
 {
-    public class SchedulerTask
+    public class SchedulerTask : Entity
     {
         public DateTime Time { get; set; }
         public Server Server { get; set; }
